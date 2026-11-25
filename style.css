@@ -11,27 +11,41 @@ body {
     background-attachment: fixed;
     background-repeat: no-repeat;
 }
-.music-button {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
+.music-section {
+    text-align: center;
+    margin: 40px auto;
+}
 
+.music-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.music-card {
+    background: none;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+}
+
+.bgMusic {
+    display: none;
+}
+
+.music-button {
     padding: 12px 20px;
     border: 1px solid #a78bfa;
     border-radius: 30px;
-
-    background: #201432;
+    background: #382052;
     color: #e9d5ff;
-
-    font-size: 14px;
+    font-weight: bold;
     cursor: pointer;
-
-    box-shadow: 0 0 15px rgba(167, 139, 250, 0.3);
     transition: 0.3s;
 }
 
 .music-button:hover {
-    background: #382052;
-    box-shadow: 0 0 20px rgba(167, 139, 250, 0.6);
+    background: #503070;
     transform: scale(1.05);
 }
