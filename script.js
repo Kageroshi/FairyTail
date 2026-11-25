@@ -124,3 +124,48 @@ async function loadHighlights() {
     }
 }
 loadHighlights();
+
+const lightbox = document.getElementById("lightbox");
+const lightboxContent = document.getElementById("lightboxContent");
+const lightboxClose = document.getElementById("lightboxClose");
+
+gallery.addEventListener("click", (event) => {
+    const media = event.target.closest("img, video");
+
+    if (!media) return;
+
+    const enlargedMedia = document.createElement(
+        media.tagName.toLowerCase()
+    );
+
+    enlargedMedia.src = media.src;
+
+    if (media.tagName === "VIDEO") {
+        enlargedMedia.controls = true;
+        enlargedMedia.autoplay = true;
+        enlargedMedia.playsInline = true;
+    }
+
+    lightboxContent.innerHTML = "";
+    lightboxContent.appendChild(enlargedMedia);
+
+    lightbox.classList.add("active");
+});
+
+function closeLightbox() {
+    lightbox.classList.remove("active");
+    lightboxContent.innerHTML = "";
+}
+
+lightboxClose.addEventListener("click", closeLightbox);
+
+lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) {
+        closeLightbox();
+    }
+});
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        closeLightbox();
+    }
+});
