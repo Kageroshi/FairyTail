@@ -34,7 +34,23 @@ document.querySelectorAll(".copy-button").forEach(button => {
         const text = button.dataset.copy;
 
         try {
-            await navigator.clipboard.writeText(text);
+            if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(text);
+            } else {
+                const textarea = document.createElement("textarea");
+                textarea.value = text;
+
+                textarea.style.position = "fixed";
+                textarea.style.opacity = "0";
+
+                document.body.appendChild(textarea);
+                textarea.select();
+
+                const success = document.execCommand("copy");
+                textarea.remove();
+
+                if (!success) throw new Error("Copy failed");
+            }
 
             button.textContent = "Copied!";
             button.classList.add("copied");
