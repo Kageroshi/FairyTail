@@ -50,6 +50,34 @@ body {
     transform: scale(1.05);
 }
 
+.copy-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.copy-button {
+    background: #6c3baa;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.copy-button:hover {
+    background: #8b5bd1;
+}
+
+.copy-button.copied {
+    background: #218838;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .highlights-section {
     text-align: center;
     padding: 40px 20px;

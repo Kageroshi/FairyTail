@@ -27,6 +27,29 @@ musicButtons.forEach((button, index) => {
     });
 });
 
+document.querySelectorAll(".copy-button").forEach(button => {
+    const originalText = button.textContent.trim();
+
+    button.addEventListener("click", async () => {
+        const text = button.dataset.copy;
+
+        try {
+            await navigator.clipboard.writeText(text);
+
+            button.textContent = "Copied!";
+            button.classList.add("copied");
+
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.classList.remove("copied");
+            }, 2000);
+
+        } catch (error) {
+            console.error("Failed to copy:", error);
+        }
+    });
+});
+
 const GITHUB_USERNAME = "zerefcoc";
 const GITHUB_REPO = "fairytail";
 const GITHUB_BRANCH = "main";
