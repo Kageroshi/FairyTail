@@ -55,25 +55,30 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
+    text-align: center;
 }
 
 .copy-button {
-    background: #6c3baa;
-    color: white;
+    display: inline-block;
+    background-color: #6c3baa !important;
+    color: white !important;
     border: none;
     padding: 10px 20px;
     border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
-    transition: 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .copy-button:hover {
-    background: #8b5bd1;
+    background-color: #8b5bd1 !important;
 }
 
 .copy-button.copied {
-    background: #218838;
+    background-color: #218838 !important;
+    color: white !important;
     font-size: 20px;
     font-weight: bold;
 }
