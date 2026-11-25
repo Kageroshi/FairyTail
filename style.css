@@ -49,3 +49,36 @@ body {
     background: #503070;
     transform: scale(1.05);
 }
+
+.highlights-section {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+.highlight-card {
+    overflow: hidden;
+    border-radius: 12px;
+    background: #1a1228;
+    border: 1px solid #8b6bc5;
+    transition: transform 0.3s ease;
+}
+
+.highlight-card:hover {
+    transform: translateY(-5px);
+}
+
+.highlight-card img,
+.highlight-card video {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
