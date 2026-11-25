@@ -11,3 +11,27 @@ body {
     background-attachment: fixed;
     background-repeat: no-repeat;
 }
+.music-button {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+
+    padding: 12px 20px;
+    border: 1px solid #a78bfa;
+    border-radius: 30px;
+
+    background: #201432;
+    color: #e9d5ff;
+
+    font-size: 14px;
+    cursor: pointer;
+
+    box-shadow: 0 0 15px rgba(167, 139, 250, 0.3);
+    transition: 0.3s;
+}
+
+.music-button:hover {
+    background: #382052;
+    box-shadow: 0 0 20px rgba(167, 139, 250, 0.6);
+    transform: scale(1.05);
+}
