@@ -4,13 +4,11 @@ const musicButtons = document.querySelectorAll(".music-button");
 musicPlayers.forEach(music => {
     music.volume = 0.2;
 });
-
 musicButtons.forEach((button, index) => {
     const music = musicPlayers[index];
 
     button.addEventListener("click", async () => {
         if (music.paused) {
-            // Pause the other music players
             musicPlayers.forEach(player => player.pause());
             musicButtons.forEach(btn => btn.textContent = "♫ Play Music");
 
@@ -52,7 +50,7 @@ document.querySelectorAll(".copy-button").forEach(button => {
                 if (!success) throw new Error("Copy failed");
             }
 
-            button.textContent = "Copied!";
+            button.textContent = "Copied ✅";
             button.classList.add("copied");
 
             setTimeout(() => {
@@ -69,10 +67,8 @@ document.querySelectorAll(".copy-button").forEach(button => {
 const GITHUB_USERNAME = "zerefcoc";
 const GITHUB_REPO = "fairytail";
 const GITHUB_BRANCH = "main";
-
 const IMAGE_EXTENSIONS = ["jpg", "jpeg", "png", "gif", "webp", "avif"];
 const VIDEO_EXTENSIONS = ["mp4", "webm", "ogg"];
-
 const gallery = document.getElementById("highlightsGrid");
 
 async function getFolderFiles(folder) {
@@ -113,7 +109,7 @@ function createHighlight(file, type) {
         const video = document.createElement("video");
 
         video.src = fileUrl;
-        video.controls = true;
+        video.controls = false;
         video.preload = "metadata";
         video.playsInline = true;
 
@@ -190,14 +186,11 @@ gallery.addEventListener("click", (event) => {
 
     lightbox.classList.add("active");
 });
-
 function closeLightbox() {
     lightbox.classList.remove("active");
     lightboxContent.innerHTML = "";
 }
-
 lightboxClose.addEventListener("click", closeLightbox);
-
 lightbox.addEventListener("click", (event) => {
     if (event.target === lightbox) {
         closeLightbox();

@@ -7,123 +7,16 @@
   <title>Fairy Tail</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap');
-
-    :root {
-      --ink: #f8f3ff;
-      --muted: #c8bbd8;
-      --gold: #f5c66b;
-      --panel: rgba(29, 19, 43, .78);
-    }
-
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      color: var(--ink);
-      font-family: 'Montserrat', sans-serif;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: .22;
-      background-image: radial-gradient(#fff 1px, transparent 1px);
-      background-size: 46px 46px;
-      mask-image: linear-gradient(to bottom, black, transparent 85%);
-    }
-
-    .wrap { width: min(1080px, 92%); margin: auto; position: relative; }
-    header { text-align: center; padding: 76px 0 52px; }
-    .guild-mark {
-      width: 112px; height: 112px; margin: 0 auto 22px;
-      display: grid; place-items: center;
-      border: 2px solid rgba(245,198,107,.8);
-      border-radius: 32px 32px 32px 8px;
-      transform: rotate(-8deg);
-      background: linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.02));
-      box-shadow: 0 0 45px rgba(235, 148, 75, .22), inset 0 0 24px rgba(255,255,255,.06);
-    }
-    .guild-mark svg { width: 76px; height: 76px; transform: rotate(8deg); }
-    .eyebrow {
-      color: var(--gold); letter-spacing: .38em; text-transform: uppercase;
-      font-size: .72rem; font-weight: 700; margin-bottom: 12px;
-    }
-    h1 {
-      font-family: 'Cinzel', serif; font-size: clamp(2.8rem, 8vw, 5.8rem);
-      line-height: 1; margin: 0; letter-spacing: .04em;
-      text-shadow: 0 5px 30px rgba(230, 137, 83, .28);
-    }
-    .subtitle { color: var(--muted); margin: 18px 0 0; letter-spacing: .18em; text-transform: uppercase; font-size: .78rem; }
-
-    .quote {
-      max-width: 760px; margin: 0 auto 76px; padding: 30px 24px;
-      text-align: center; position: relative;
-      border-top: 1px solid rgba(245,198,107,.45);
-      border-bottom: 1px solid rgba(245,198,107,.45);
-    }
-    .quote::before, .quote::after { color: var(--gold); font-family: Georgia, serif; font-size: 3rem; position: absolute; opacity: .8; }
-    .quote::before { content: "“"; left: 4px; top: 7px; }
-    .quote::after { content: "”"; right: 4px; bottom: -15px; }
-    .quote p { font-family: 'Cinzel', serif; font-size: clamp(1.3rem, 4vw, 2rem); margin: 0; }
-    .quote small { display: block; color: var(--muted); margin-top: 12px; letter-spacing: .22em; text-transform: uppercase; font-size: .65rem; }
-
-    .section-heading { text-align: center; margin-bottom: 28px; }
-    .section-heading h2 { font: 700 clamp(1.7rem, 4vw, 2.4rem) 'Cinzel', serif; margin: 0 0 9px; }
-    .section-heading p { color: var(--muted); margin: 0; font-size: .9rem; }
-
-    .members {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
-      padding-bottom: 76px;
-    }
-    .member {
-      position: relative; overflow: hidden; text-align: center;
-      padding: 30px 22px 28px; border-radius: 18px;
-      background: var(--panel); border: 1px solid rgba(255,255,255,.11);
-      box-shadow: 0 18px 45px rgba(0,0,0,.2);
-      transition: transform .25s ease, border-color .25s ease;
-    }
-    .member:hover { transform: translateY(-8px); border-color: rgba(245,198,107,.65); }
-    .member::before {
-      content: ""; position: absolute; width: 190px; height: 190px; border-radius: 50%;
-      top: -120px; left: calc(50% - 95px); background: var(--glow); filter: blur(45px); opacity: .3;
-    }
-    .sigil {
-      width: 126px; height: 126px; margin: 0 auto 20px; position: relative;
-      display: grid; place-items: center; border-radius: 50%;
-      background: linear-gradient(145deg, rgba(255,255,255,.13), rgba(255,255,255,.025));
-      border: 1px solid color-mix(in srgb, var(--accent), transparent 35%);
-      box-shadow: 0 0 30px color-mix(in srgb, var(--accent), transparent 78%), inset 0 0 22px rgba(255,255,255,.06);
-    }
-    .sigil svg { width: 68px; height: 68px; color: var(--accent); }
-    .member h3 { font: 700 1.45rem 'Cinzel', serif; margin: 0 0 7px; }
-    .member .role { color: var(--accent); font-size: .68rem; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; }
-    .member .trait { color: var(--muted); font-size: .84rem; line-height: 1.6; margin: 15px 0 0; }
-    .laxus { --accent: #e1ff00; --glow: #fffb00; }
-    .yvaine { --accent: #8bd5f5; --glow: #399bd1; }
-    .scorpio { --accent: #ff765d; --glow: #ef493c; }
-
-    footer { text-align: center; padding: 0 0 30px; color: #9d8eae; font-size: .72rem; letter-spacing: .08em; }
-    footer span { color: var(--gold); }
-    @media (max-width: 700px) {
-      header { padding-top: 54px; }
-      .members { grid-template-columns: 1fr; max-width: 420px; margin: auto; }
-      .quote { margin-bottom: 58px; }
-    }
-  </style>
 </head>
 <body>
   <main class="wrap">
     <header>
+      <img src="emblem.png" alt="Fairy Tail Emblem" class="guild-emblem">
       <h1>FAIRY TAIL</h1>
     </header>
 
     <section class="quote" aria-label="Guild motto">
-      <p>Power of Friendship For The Win</p>
+      <p>Power of Friendship Conquers All</p>
     </section>
 
     <section aria-labelledby="members-title">
@@ -132,17 +25,12 @@
       </div>
 
       <div class="members">
+
         <article class="member laxus">
           <div class="sigil" aria-label="Lightining emblem">
-   <svg viewBox="0 0 80 80" fill="none" aria-hidden="true">
-    <path
-        d="M46 5 L19 43 H36 L29 75 L62 32 H43 L46 5Z"
-        fill="currentColor"
-        stroke="#fff0c7"
-        stroke-width="2"
-        stroke-linejoin="round"
-    />
-</svg>
+            <svg viewBox="0 0 80 80" fill="none" aria-hidden="true">
+              <path d="M46 5 L19 43 H36 L29 75 L62 32 H43 L46 5Z" fill="currentColor" stroke="#fff0c7" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
           </div>
           <h3>Laxus</h3>
           <div class="role">Leader</div>
@@ -203,13 +91,13 @@
 </section>
 
 <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <button class="lightbox-close" id="lightboxClose">x</button>
     <div class="lightbox-content" id="lightboxContent"></div>
 </div>
 
 <div class="copy-container">
     <button class="copy-button" data-copy="#2QUP899CJ">
-        Guild ID #2QUP899CJ
+        ⧉ Clan Tag #2QUP899CJ
     </button>
 </div>
 
