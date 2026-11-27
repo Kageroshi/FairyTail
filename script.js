@@ -1,3 +1,24 @@
+document.querySelectorAll(".member.laxus, .member.yvaine, .member.scorpio").forEach(card => {
+    let magicTimeout;
+
+    function triggerMagic() {
+        card.classList.remove("magic-active");
+        clearTimeout(magicTimeout);
+        void card.offsetWidth;
+        card.classList.add("magic-active");
+
+        if (card.classList.contains("laxus")) {
+           magicTimeout = setTimeout(() => {card.classList.remove("magic-active");}, 2200);
+        }
+    }
+    card.addEventListener("mouseenter", triggerMagic);
+    card.addEventListener("click", triggerMagic);
+    card.addEventListener("animationend", (event) => {
+    if (card.classList.contains("laxus")) return;
+    card.classList.remove("magic-active");
+    });
+});
+
 const musicPlayers = document.querySelectorAll(".bgMusic");
 const musicButtons = document.querySelectorAll(".music-button");
 
@@ -21,45 +42,6 @@ musicButtons.forEach((button, index) => {
         } else {
             music.pause();
             button.textContent = "♫ Play Music";
-        }
-    });
-});
-
-document.querySelectorAll(".copy-button").forEach(button => {
-    const originalText = button.textContent.trim();
-
-    button.addEventListener("click", async () => {
-        const text = button.dataset.copy;
-
-        try {
-            if (navigator.clipboard && window.isSecureContext) {
-                await navigator.clipboard.writeText(text);
-            } else {
-                const textarea = document.createElement("textarea");
-                textarea.value = text;
-
-                textarea.style.position = "fixed";
-                textarea.style.opacity = "0";
-
-                document.body.appendChild(textarea);
-                textarea.select();
-
-                const success = document.execCommand("copy");
-                textarea.remove();
-
-                if (!success) throw new Error("Copy failed");
-            }
-
-            button.textContent = "Copied ✅";
-            button.classList.add("copied");
-
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.classList.remove("copied");
-            }, 2000);
-
-        } catch (error) {
-            console.error("Failed to copy:", error);
         }
     });
 });
@@ -200,4 +182,43 @@ document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
         closeLightbox();
     }
+});
+
+document.querySelectorAll(".copy-button").forEach(button => {
+    const originalText = button.textContent.trim();
+
+    button.addEventListener("click", async () => {
+        const text = button.dataset.copy;
+
+        try {
+            if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(text);
+            } else {
+                const textarea = document.createElement("textarea");
+                textarea.value = text;
+
+                textarea.style.position = "fixed";
+                textarea.style.opacity = "0";
+
+                document.body.appendChild(textarea);
+                textarea.select();
+
+                const success = document.execCommand("copy");
+                textarea.remove();
+
+                if (!success) throw new Error("Copy failed");
+            }
+
+            button.textContent = "Copied ✅";
+            button.classList.add("copied");
+
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.classList.remove("copied");
+            }, 1000);
+
+        } catch (error) {
+            console.error("Failed to copy:", error);
+        }
+    });
 });
